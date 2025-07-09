@@ -32,7 +32,7 @@ public class MemberRepository {
     }
 
     public Long save(Member member) {
-        KeyHolder kh = new GeneratedKeyHolder();
+        KeyHolder key_holder = new GeneratedKeyHolder();
         jdbc.update(con -> {
             PreparedStatement ps = con.prepareStatement(
                     "INSERT INTO members (email, password) VALUES (?, ?)",
@@ -41,7 +41,7 @@ public class MemberRepository {
             ps.setString(1, member.getEmail());
             ps.setString(2, member.getPassword());
             return ps;
-        }, kh);
-        return kh.getKey().longValue();
+        }, key_holder);
+        return key_holder.getKey().longValue();
     }
 }
