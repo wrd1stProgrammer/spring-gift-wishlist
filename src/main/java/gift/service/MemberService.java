@@ -14,10 +14,6 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public Optional<Member> findByEmail(String email) {
-        return memberRepository.findByEmail(email);
-    }
-
     public Member register(Member member) {
         if (memberRepository.findByEmail(member.getEmail()).isPresent()) {
             throw new IllegalArgumentException("이미 가입된 이메일입니다.");
